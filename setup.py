@@ -26,7 +26,7 @@ setup(
     ],
     # Active la prise en compte du fichier MANIFEST.in
     include_package_data=True,
-    url='https://git.archieri.fr/simon/opv-status-api',
+    url='https://github.com/OpenPathView/opv-status-api',
     entry_points={
         'console_scripts': [
             'opv-status-api = opv_status_api.__main__:main']
