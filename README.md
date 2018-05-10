@@ -1,5 +1,5 @@
 # Open Path View Status API
-An HTTP rest API which allow [opv-status](https://git.archieri.fr/simon/opv-status) to work.
+An HTTP rest API which allow [opv-status](https://github.com/OpenPathView/opv-status) to work.
 This API manage Spark and [OPV-importData](https://github.com/OpenPathView/OPV_importData)
 
 ## Requirements
