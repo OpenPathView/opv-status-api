@@ -1,0 +1,7 @@
+psutil
+path.py
+docopt
+PyYAML
+-e git+https://github.com/OpenPathView/OPV_importData/@master#egg=opv_import
+-e git+https://github.com/OpenPathView/DirectoryManagerClient@stable#egg=opv_directorymanagerclient
+-e git+https://github.com/OpenPathView/OPV_DBRest-client@stable#egg=opv_api_client
