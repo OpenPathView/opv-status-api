@@ -12,7 +12,6 @@ setup(
     author="Christophe NOUCHET",
     author_email="team@openpathview.fr",
     description="Open Path View Status Api",
-    long_description=open('README.md').read(),
     dependency_links=[
         "git+https://github.com/OpenPathView/DirectoryManagerClient@stable#egg=opv_directorymanagerclient",
         "git+https://github.com/OpenPathView/OPV_DBRest-client@stable#egg=opv_api_client",
