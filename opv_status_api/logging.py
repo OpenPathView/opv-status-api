@@ -12,21 +12,19 @@
 # You should have received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 
-# Contributors: Benjamin BERNARD <benjamin.bernard@openpathview.fr>
+# Contributors: Simon Archieri <simon.archieri@openpathview.fr>
 # Email: team@openpathview.fr
-# Description: Helps to configure logger.
-
-# Best practices for loggers :
-# https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
+# Description: OPV status api
 
 import os
 import logging.config
+#import json
 
 import yaml
 
 from path import Path
 
-DEFAULT_LOGGING_CONFIG_PATH = Path(__file__).dirname() / ".." / "config" / "logging.yaml"
+DEFAULT_LOGGING_CONFIG_PATH = Path(__file__).dirname() / "logging.yaml"
 DEFAULT_LOGGING_LEVEL = logging.INFO
 DEFAULT_LOGGING_ENV_NAME = 'LOG_CFG'
 
@@ -48,6 +46,7 @@ def setup_logging(
     if path.exists():
         with open(path, 'rt') as f:
             config = yaml.safe_load(f.read())
+        #print(json.dumps(config, indent=4))
         logging.config.dictConfig(config)
     else:
         logging.basicConfig(level=default_level)
