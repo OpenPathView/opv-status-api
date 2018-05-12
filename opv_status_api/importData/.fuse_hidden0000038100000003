@@ -16,23 +16,17 @@
 # Email: team@openpathview.fr
 # Description: OPV status api
 
-from threading import Thread
-import subprocess
-import os
+import logging
 
 
-class LaunchSparkThread(Thread):
-    def __init__(self, launchScript="/home/opv/dev/launch.sh", campaignName=""):
-        self.launchScript = launchScript
-        self.campaignName = campaignName
+class StoredHandler(logging.Handler):
+    def __init__(self):
+        logging.Handler.__init__(self)
+        self.log_list = []
 
-        self.launchScriptDir = self.launchScript.split("/")
-        del self.launchScriptDir[-1]
-        self.launchScriptDir = "/".join(self.launchScriptDir)
+    def emit(self, record):
+        self.log_list.append(record.msg)
+        print(self.log_list)
 
-        Thread.__init__(self)
-
-    def run(self):
-        devnull = open(os.devnull, 'w')
-        subprocess.call([self.launchScript, self.campaignName], cwd=self.launchScriptDir, stdout=devnull, stderr=devnull)
-        devnull.close()
+    def getLog(self):
+        return self.log_list

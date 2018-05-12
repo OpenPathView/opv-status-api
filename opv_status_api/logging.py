@@ -12,12 +12,9 @@
 # You should have received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 
-# Contributors: Benjamin BERNARD <benjamin.bernard@openpathview.fr>
+# Contributors: Simon Archieri <simon.archieri@openpathview.fr>
 # Email: team@openpathview.fr
-# Description: Helps to configure logger.
-
-# Best practices for loggers :
-# https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
+# Description: OPV status api
 
 import os
 import logging.config
