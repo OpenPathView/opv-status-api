@@ -18,12 +18,13 @@
 
 import os
 import logging.config
+#import json
 
 import yaml
 
 from path import Path
 
-DEFAULT_LOGGING_CONFIG_PATH = Path(__file__).dirname() / ".." / "config" / "logging.yaml"
+DEFAULT_LOGGING_CONFIG_PATH = Path(__file__).dirname() / "logging.yaml"
 DEFAULT_LOGGING_LEVEL = logging.INFO
 DEFAULT_LOGGING_ENV_NAME = 'LOG_CFG'
 
@@ -45,6 +46,7 @@ def setup_logging(
     if path.exists():
         with open(path, 'rt') as f:
             config = yaml.safe_load(f.read())
+        #print(json.dumps(config, indent=4))
         logging.config.dictConfig(config)
     else:
         logging.basicConfig(level=default_level)

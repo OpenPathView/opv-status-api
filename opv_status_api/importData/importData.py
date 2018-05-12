@@ -16,6 +16,7 @@
 # Email: team@openpathview.fr
 # Description: OPV status api
 
+import os
 import copy
 import logging
 from opv_status_api.importData.importDataThread import ImportDataThread
@@ -69,8 +70,29 @@ class ImportData:
 
         return output
 
+    def getLog(self, path=[], data={}, type="POST"):
+        output = copy.deepcopy(self.defaultOutput).copy()
+
+        if type == "POST":
+            logFile = self.defaultLogFile if "logFile" not in data else data["logFile"]
+
+            if os.path.isfile(logFile):
+                with open(logFile) as log:
+                    output["answer"]["answer"] = log.read()
+
+            else:
+                output["httpCode"] = 400
+                output["answer"]["error"] = "Can't find log file"
+
+        else:
+            output["httpCode"] = 400
+            output["answer"]["error"] = "You must use POST"
+
+        return output
+
     command = {
         "status": getStatus,
+        "log": getLog,
         "launch": launchImport
     }
 

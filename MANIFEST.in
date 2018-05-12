@@ -1,0 +1,1 @@
+recursive-include opv_status_api *.yaml

@@ -35,6 +35,7 @@ opv-status-api --help
 api
 ├── import
 │   ├── launch          POST --> {"path": str, "id_malette": int, "camera_number": int, "description": str, "campaign_name": str, "id_rederbro": str}
+│   ├── log             POST --> {"logFile": str}
 │   └── status          GET
 └── spark
     ├── launch          POST --> {"campaignName": str, "customLaunchScript": str}
