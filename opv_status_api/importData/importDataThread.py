@@ -60,7 +60,7 @@ class ImportDataThread(Thread):
             treat.save_all_lot(on_progress_listener=self.setProgress)
             self.status = "down"
         except Exception as e:
-            self.logger.debug("Error while launching import : {}".format(e))
+            self.logger.exception("Error while launching import : {}".format(e))
             self.status = "down"
             self.doing = "Exception : {}".format(e)
 

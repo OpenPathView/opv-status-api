@@ -22,9 +22,10 @@ import os
 
 
 class LaunchSparkThread(Thread):
-    def __init__(self, launchScript="/home/opv/dev/launch.sh", campaignName=""):
+    def __init__(self, launchScript="/home/opv/dev/launch.sh", campaign_id=1, malette_id=1):
         self.launchScript = launchScript
-        self.campaignName = campaignName
+        self.campaign_id = campaign_id
+        self.malette_id = malette_id
 
         self.launchScriptDir = self.launchScript.split("/")
         del self.launchScriptDir[-1]
@@ -34,5 +35,5 @@ class LaunchSparkThread(Thread):
 
     def run(self):
         devnull = open(os.devnull, 'w')
-        subprocess.call([self.launchScript, self.campaignName], cwd=self.launchScriptDir, stdout=devnull, stderr=devnull)
+        subprocess.call([self.launchScript, str(self.campaign_id), str(self.malette_id)], cwd=self.launchScriptDir, stdout=devnull, stderr=devnull)
         devnull.close()

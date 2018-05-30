@@ -51,6 +51,7 @@ class HttpHandler(BaseHTTPRequestHandler):
         self.logger.debug("Answer of task : {}".format(answer))
         self.send_response(answer["httpCode"])
         self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(json.dumps(answer["answer"]).encode())
 
@@ -79,5 +80,6 @@ class HttpHandler(BaseHTTPRequestHandler):
         self.logger.debug("Answer of task : {}".format(answer))
         self.send_response(answer["httpCode"])
         self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(json.dumps(answer["answer"]).encode())

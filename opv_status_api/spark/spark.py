@@ -59,18 +59,18 @@ class Spark:
         output = copy.deepcopy(self.defaultOutput).copy()
 
         if type == "POST":
-            if "campaignName" in data:
-                self.sparkThread = LaunchSparkThread(campaignName=data["campaignName"])
+            if "campaign_id" in data and "malette_id" in data:
+                self.sparkThread = LaunchSparkThread(campaign_id=data["campaign_id"], malette_id=data["malette_id"])
 
                 if "customLaunchScript" in data:
-                    self.sparkThread = LaunchSparkThread(launchScript=data["customLaunchScript"], campaignName=data["campaignName"])
+                    self.sparkThread = LaunchSparkThread(launchScript=data["customLaunchScript"], campaign_id=data["campaign_id"], malette_id=data["malette_id"])
 
                 self.sparkThread.start()
 
                 output["answer"]["answer"] = "Spark launched you should check the api"
             else:
                 output["httpCode"] = 400
-                output["answer"]["error"] = "You must set the campaign name"
+                output["answer"]["error"] = "You must set the campaign id and malette id"
 
         else:
             output["httpCode"] = 400
