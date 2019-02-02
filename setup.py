@@ -31,7 +31,8 @@ setup(
     dependency_links=[
         "git+https://github.com/OpenPathView/DirectoryManagerClient@stable#egg=opv_directorymanagerclient",
         "git+https://github.com/OpenPathView/OPV_DBRest-client@stable#egg=opv_api_client",
-        "git+https://github.com/OpenPathView/OPV_importData/@master#egg=opv_import"
+        "git+https://github.com/OpenPathView/OPV_importData/@master#egg=opv_import",
+        "git+https://github.com/OpenPathView/OPV_Celery/@master#egg=opv_celery"
     ],
     install_requires=[
         "path.py",
@@ -40,7 +41,10 @@ setup(
         "opv_directorymanagerclient",
         "opv_api_client",
         "docopt",
-        "PyYAML"
+        "PyYAML",
+        "Flask",
+        "Flask-Cors",
+        "gevent"
     ],
     # Active la prise en compte du fichier MANIFEST.in
     include_package_data=True,

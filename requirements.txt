@@ -2,6 +2,10 @@ psutil
 path.py
 docopt
 PyYAML
+Flask
+Flask-Cors
+gevent
 -e git+https://github.com/OpenPathView/OPV_importData/@master#egg=opv_import
 -e git+https://github.com/OpenPathView/DirectoryManagerClient@stable#egg=opv_directorymanagerclient
 -e git+https://github.com/OpenPathView/OPV_DBRest-client@stable#egg=opv_api_client
+-e git+https://github.com/OpenPathView/OPV_Celery@master#egg=opv_celery
