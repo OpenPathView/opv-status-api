@@ -16,11 +16,10 @@
 # Email: team@openpathview.fr
 # Description: OPV status api
 
-from http.server import HTTPServer
-from opv_status_api.httpHandler import HttpHandler
 import docopt
 import logging
 from opv_status_api.logging import setup_logging
+from opv_status_api.service import Service
 
 __doc__ = """
 An api for opv-status front
@@ -43,8 +42,9 @@ def main():
 
     server_address = ('', int(args["--port"]))
     logger.info("Starting http server at http://localhost:{} open to {}".format(server_address[1], server_address[0]))
-    httpd = HTTPServer(server_address, HttpHandler)
-    httpd.serve_forever()
+    
+    service = Service(host=server_address[0], port=server_address[1])
+    service.start()
 
 
 if __name__ == "__main__":

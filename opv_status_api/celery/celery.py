@@ -15,48 +15,22 @@
 # Contributors: Simon Archieri <simon.archieri@openpathview.fr>
 # Email: team@openpathview.fr
 # Description: OPV status api
-
-from opv_status_api.spark.launchSparkThread import LaunchSparkThread
-import copy
-import psutil
 import logging
+from opv_celery.__main__ import launch
 
 
-class Spark:
+class Celery:
     logger = logging.getLogger("opv_status_api")
 
-    def getPort(self):
-        port = []
-
-        open_connections = psutil.net_connections()
-
-        for connection in open_connections:
-            app = psutil.Process(connection.pid)
-            if app.name() == "java" and app.username() == "opv" and connection.laddr.ip == "::":
-                port.append(connection.laddr.port)
-
-        return port
-
-    def getSparkPort(self):
-        return {
-            "answer": self.getPort(),
-            "error": None
-        }
-
-    def launchSpark(self, data):
+    def LaunchCelery(self, data):
         output = {
             "answer": None,
             "error": None
         }
         if "campaign_id" in data and "malette_id" in data:
-            self.sparkThread = LaunchSparkThread(campaign_id=data["campaign_id"], malette_id=data["malette_id"])
+            launch(data["campaign_id"], data["malette_id"])
 
-            if "customLaunchScript" in data:
-                self.sparkThread = LaunchSparkThread(launchScript=data["customLaunchScript"], campaign_id=data["campaign_id"], malette_id=data["malette_id"])
-
-            self.sparkThread.start()
-
-            output["answer"] = "Spark launched you should check the api"
+            output["answer"] = "Celery launched you should check the api"
         else:
             output["error"] = "Missing parameter"
 
